@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Locale;
+import java.util.stream.Collectors;
 
 @Service
 public class GenreServiceImpl implements GenreService {
@@ -28,6 +30,17 @@ public class GenreServiceImpl implements GenreService {
         List<Genre> genreList = new LinkedList<>();
         genreRepository.findAll().iterator().forEachRemaining(genreList::add);
         return genreList;
+    }
+
+    @Override
+    public List<Genre> findByTemplate(String template) {
+        List<Genre> genreList = findAll();
+
+        String lowerTemplate = template.toLowerCase(Locale.ROOT);
+
+        return genreList.stream()
+                .filter(genre -> genre.getName().toLowerCase(Locale.ROOT).contains(lowerTemplate))
+                .collect(Collectors.toList());
     }
 
     @Override

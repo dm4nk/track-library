@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Locale;
+import java.util.stream.Collectors;
 
 @Service
 public class TrackServiceImpl implements TrackService {
@@ -29,6 +31,20 @@ public class TrackServiceImpl implements TrackService {
         List<Track> trackList = new LinkedList<>();
         trackRepository.findAll().iterator().forEachRemaining(trackList::add);
         return trackList;
+    }
+
+    @Override
+    public List<Track> findByTemplate(String template) {
+        List<Track> trackList = findAll();
+
+        String lowerTemplate = template.toLowerCase(Locale.ROOT);
+
+        return trackList.stream()
+                .filter(track -> track.getName().toLowerCase(Locale.ROOT).contains(lowerTemplate) ||
+                        track.getAuthor().toLowerCase(Locale.ROOT).contains(lowerTemplate) ||
+                        track.getAlbum().toLowerCase(Locale.ROOT).contains(lowerTemplate) ||
+                        track.getGenre().getName().toLowerCase(Locale.ROOT).contains(lowerTemplate))
+                .collect(Collectors.toList());
     }
 
     @Override

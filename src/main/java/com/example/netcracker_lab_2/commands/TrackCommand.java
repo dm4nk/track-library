@@ -14,6 +14,6 @@ public class TrackCommand {
     String name;
     String author;
     String album;
-    Double duration;
+    Integer duration;
     GenreCommand genreCommand;
 }

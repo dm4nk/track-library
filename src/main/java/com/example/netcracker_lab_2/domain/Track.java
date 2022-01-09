@@ -20,12 +20,12 @@ public class Track implements Serializable {
     String name;
     String author;
     String album;
-    Double duration;
+    Integer duration;
     @ManyToOne
     Genre genre;
 
     @Builder
-    public Track(Integer id, String name, String author, String album, Double duration, Genre genre) {
+    public Track(Integer id, String name, String author, String album, Integer duration, Genre genre) {
         this.id = id;
         this.name = name;
         this.author = author;

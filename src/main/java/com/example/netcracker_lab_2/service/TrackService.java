@@ -8,6 +8,8 @@ import java.util.List;
 public interface TrackService {
     List<Track> findAll();
 
+    List<Track> findByTemplate(String template);
+
     Track findById(Integer id);
 
     TrackCommand saveTrackCommand(TrackCommand trackCommand);

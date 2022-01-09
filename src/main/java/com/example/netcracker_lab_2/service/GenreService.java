@@ -8,6 +8,8 @@ import java.util.List;
 public interface GenreService {
     List<Genre> findAll();
 
+    List<Genre> findByTemplate(String template);
+
     Genre findById(Integer id);
 
     GenreCommand saveGenreCommand(GenreCommand genreCommand);

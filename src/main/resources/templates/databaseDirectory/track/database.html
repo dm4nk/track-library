@@ -10,11 +10,11 @@
 <table class="table table-hover ">
     <thead class="thead-inverse">
     <tr>
-        <th>name</th>
-        <th>author</th>
-        <th>album</th>
-        <th>duration</th>
-        <th>genre</th>
+        <th>Name</th>
+        <th>Author</th>
+        <th>Album</th>
+        <th>Duration</th>
+        <th>Genre</th>
         <th>Update</th>
         <th>Delete</th>
     </tr>
@@ -22,7 +22,7 @@
     <tr style="font-size: large" th:each="track: ${tracks}">
         <td><a style="color: white" th:text="${track.name}">Track name</a></td>
         <td><a style="color: white" th:text="${track.author}">Track author</a></td>
-        <td><a style="color: white" th:text="${track.author}">Track album</a></td>
+        <td><a style="color: white" th:text="${track.album}">Track album</a></td>
         <td><a style="color: white" th:text="${track.duration}">Track duration</a></td>
         <td><a style="color: white" th:text="${track.genre.name}">Track genre</a></td>
 

@@ -41,5 +41,71 @@
 	text-shadow:0px -1px 0px #7a2a1d; " type="submit" value="Genres"/>
 </form>
 
+<br/>
+<hr/>
+
+<form th:action="@{/find/}">
+    <label for="template" style="color: white">Find by template: </label>
+    <input type="text" id="template" name="template" value="" style="border-radius: 9px;"/>
+    <input style="box-shadow:inset 0px 34px 0px -15px #1c1c1c;
+	background:linear-gradient(to bottom, #423f3f 5%, #080100 100%);
+	background-color:#423f3f;
+	border:1px solid #241d13;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:15px;
+	font-weight:bold;
+	padding:9px 23px;
+	text-decoration:none;
+	text-shadow:0px -1px 0px #7a2a1d; " type="submit" value="Find"/>
+</form>
+
+<!--/*@thymesVar id="genre" type="com.example.netcracker_lab_2.domain.Track"*/-->
+<table class="table table-hover " th:if="${not #lists.isEmpty(tracks)}">
+    <thead class="thead-inverse">
+    <tr>
+        <th>Name</th>
+        <th>Author</th>
+        <th>Album</th>
+        <th>Duration</th>
+        <th>Genre</th>
+        <th>Update</th>
+        <th>Delete</th>
+    </tr>
+    </thead>
+    <tr style="font-size: large" th:each="track: ${tracks}">
+        <td><a style="color: white" th:text="${track.name}">Track name</a></td>
+        <td><a style="color: white" th:text="${track.author}">Track author</a></td>
+        <td><a style="color: white" th:text="${track.album}">Track album</a></td>
+        <td><a style="color: white" th:text="${track.duration}">Track duration</a></td>
+        <td><a style="color: white" th:text="${track.genre.name}">Track genre</a></td>
+
+        <td><a style="color: white" th:href="@{/track/{id}/update/(id=${track.id})}">Update</a></td>
+        <td><a style="color: white" th:href="@{/track/{id}/delete/(id=${track.id})}">Delete</a></td>
+
+    </tr>
+</table>
+
+<br/>
+
+<table class="table table-hover " th:if="${not #lists.isEmpty(genres)}">
+    <thead class="thead-inverse">
+    <tr>
+        <th>Name</th>
+        <th>Update</th>
+        <th>Delete</th>
+    </tr>
+    </thead>
+    <tr style="font-size: large" th:each="genre: ${genres}">
+        <td><a style="color: white" th:text="${genre.name}">Genre name</a></td>
+
+        <td><a style="color: white" th:href="@{/genre/{id}/update/(id=${genre.id})}">Update</a></td>
+        <td><a style="color: white" th:href="@{/genre/{id}/delete/(id=${genre.id})}">Delete</a></td>
+
+    </tr>
+</table>
+
 </body>
 </html>
