@@ -1,10 +1,10 @@
 package com.example.netcracker_lab_2.repositiry;
 
-import com.example.netcracker_lab_2.domain.Genre;
+import com.example.netcracker_lab_2.domain.Track;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface GenreRepository extends CrudRepository<Genre, Integer> {
+public interface TrackRepository extends CrudRepository<Track, Integer> {
 
 }

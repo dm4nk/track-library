@@ -3,9 +3,8 @@ package com.example.netcracker_lab_2.domain;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
-import java.io.Serializable;
-
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 

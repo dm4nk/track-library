@@ -17,7 +17,7 @@ public class GenreController {
     @GetMapping
     @RequestMapping("genre/new/")
     public String newGenre(Model model) {
-        model.addAttribute("genre", new GenreCommand());
+        model.addAttribute("genre", GenreCommand.builder().build());
 
         return "databaseDirectory/genre/new";
     }

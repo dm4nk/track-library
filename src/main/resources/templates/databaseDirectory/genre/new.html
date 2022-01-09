@@ -7,11 +7,11 @@
 <body style="background-color: #423f3f">
 
 <!--/*@thymesVar id="genre" type="com.example.netcracker_lab_2.commands.GenreCommand"*/-->
-<form th:method="POST" th:action="@{/genre/saveOrUpdate/}" th:object="${genre}">
+<form th:action="@{/genre/saveOrUpdate/}" th:method="POST" th:object="${genre}">
 
-    <label  style="color: white" for="name">Enter name of Genre: </label>
-    <input type="hidden" th:field="*{id}"/>
-    <input  style="border-radius: 9px; " type="text" th:field="*{name}" id="name"/>
+    <label for="name" style="color: white">Enter name of Genre: </label>
+    <input th:field="*{id}" type="hidden"/>
+    <input id="name" style="border-radius: 9px; " th:field="*{name}" type="text"/>
     <br/>
     <br/>
 
