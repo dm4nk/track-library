@@ -6,9 +6,15 @@ import lombok.NonNull;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
+/**
+ * Converter class
+ */
 @Component
 public class GenreToGenreCommand implements Converter<Genre, GenreCommand> {
 
+    /**
+     * Converts {@link Genre} to {@link GenreCommand}
+     */
     @Override
     public GenreCommand convert(@NonNull Genre source) {
         return GenreCommand.builder()

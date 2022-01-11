@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
+@RequestMapping("/genre")
 public class GenreController {
     private final GenreService genreService;
 
@@ -14,38 +15,33 @@ public class GenreController {
         this.genreService = genreService;
     }
 
-    @GetMapping
-    @RequestMapping("genre/new/")
+    @GetMapping({"new/", "new" })
     public String newGenre(Model model) {
         model.addAttribute("genre", GenreCommand.builder().build());
 
         return "databaseDirectory/genre/new";
     }
 
-    @GetMapping
-    @RequestMapping("genre/")
+    @GetMapping({"", "/"})
     public String allGenres(Model model) {
         model.addAttribute("genres", genreService.findAll());
 
         return "databaseDirectory/genre/database";
     }
 
-    @GetMapping
-    @RequestMapping("genre/{id}/update/")
+    @GetMapping({"{id}/update/", "{id}/update"})
     public String updateGenre(@PathVariable String id, Model model) {
         model.addAttribute("genre", genreService.findCommandById(Integer.parseInt(id)));
         return "databaseDirectory/genre/new";
     }
 
-    @GetMapping
-    @RequestMapping("genre/{id}/delete/")
+    @GetMapping({"{id}/delete/", "{id}/delete"})
     public String deleteGenre(@PathVariable String id) {
         genreService.deleteById(Integer.parseInt(id));
         return "redirect:/genre/";
     }
 
-    @PostMapping
-    @RequestMapping("/genre/saveOrUpdate/")
+    @PostMapping({"saveOrUpdate/", "saveOrUpdate"})
     public String saveOrUpdateGenre(@ModelAttribute GenreCommand command) {
         GenreCommand savedCommand = genreService.saveGenreCommand(command);
         return "redirect:/genre/";

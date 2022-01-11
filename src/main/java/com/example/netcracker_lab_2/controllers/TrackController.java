@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
+@RequestMapping("/track")
 public class TrackController {
     private final TrackService trackService;
     private final GenreService genreService;
@@ -18,8 +19,7 @@ public class TrackController {
         this.genreService = genreService;
     }
 
-    @GetMapping
-    @RequestMapping("track/new/")
+    @GetMapping({"new/", "new"})
     public String newGenre(Model model) {
         model.addAttribute("track", TrackCommand.builder().genreCommand(GenreCommand.builder().build()).build());
 
@@ -28,16 +28,14 @@ public class TrackController {
         return "databaseDirectory/track/new";
     }
 
-    @GetMapping
-    @RequestMapping("track/")
+    @GetMapping({"", "/"})
     public String allGenres(Model model) {
         model.addAttribute("tracks", trackService.findAll());
 
         return "databaseDirectory/track/database";
     }
 
-    @GetMapping
-    @RequestMapping("track/{id}/update/")
+    @GetMapping({"{id}/update/", "{id}/update"})
     public String updateGenre(@PathVariable String id, Model model) {
         model.addAttribute("track", trackService.findCommandById(Integer.parseInt(id)));
 
@@ -46,15 +44,13 @@ public class TrackController {
         return "databaseDirectory/track/new";
     }
 
-    @GetMapping
-    @RequestMapping("track/{id}/delete/")
+    @GetMapping({"{id}/delete/", "{id}/delete"})
     public String deleteGenre(@PathVariable String id) {
         trackService.deleteById(Integer.parseInt(id));
         return "redirect:/track/";
     }
 
-    @PostMapping
-    @RequestMapping("/track/saveOrUpdate/")
+    @PostMapping({"saveOrUpdate/", "saveOrUpdate"})
     public String saveOrUpdateGenre(@ModelAttribute TrackCommand command) {
         TrackCommand savedCommand = trackService.saveTrackCommand(command);
         return "redirect:/track/";

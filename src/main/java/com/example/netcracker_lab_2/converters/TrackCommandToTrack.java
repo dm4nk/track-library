@@ -5,6 +5,9 @@ import com.example.netcracker_lab_2.domain.Track;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
+/**
+ * Converter class
+ */
 @Component
 public class TrackCommandToTrack implements Converter<TrackCommand, Track> {
     private final GenreCommandToGenre genreCommandToGenre;
@@ -13,6 +16,9 @@ public class TrackCommandToTrack implements Converter<TrackCommand, Track> {
         this.genreCommandToGenre = genreCommandToGenre;
     }
 
+    /**
+     * Converts {@link TrackCommand} to {@link Track}
+     */
     @Override
     public Track convert(TrackCommand source) {
         return Track.builder()

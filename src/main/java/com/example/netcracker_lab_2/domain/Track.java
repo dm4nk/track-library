@@ -6,6 +6,9 @@ import lombok.experimental.FieldDefaults;
 import javax.persistence.*;
 import java.io.Serializable;
 
+/**
+ * Simple business object representing a Track
+ */
 @Entity
 
 @Getter

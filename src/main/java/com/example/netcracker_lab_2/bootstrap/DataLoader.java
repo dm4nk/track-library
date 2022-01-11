@@ -10,6 +10,9 @@ import org.springframework.stereotype.Component;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * Class meant to load data t database
+ */
 @Component
 public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
     private final TrackRepository trackRepository;
@@ -20,7 +23,9 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
         this.genreRepository = genreRepository;
     }
 
-
+    /**
+     * Loads data every time application restarts
+     */
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
         trackRepository.saveAll(getTracks());

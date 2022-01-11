@@ -18,19 +18,17 @@ public class IndexController {
         this.genreService = genreService;
     }
 
-    @GetMapping
-    @RequestMapping("/")
+    @RequestMapping({"/", ""})
     public String init() {
         return "index";
     }
 
-    @GetMapping
-    @RequestMapping("/find")
+    @GetMapping({"/find", "/find/"})
     public String find(@RequestParam String template, Model model) {
 
-        model.addAttribute("tracks", trackService.findByTemplate(template));
+        model.addAttribute("tracks", trackService.findAllByNameAlbumAuthorLike(template));
 
-        model.addAttribute("genres", genreService.findByTemplate(template));
+        model.addAttribute("genres", genreService.findAllByNameLike(template));
 
         return "index";
     }

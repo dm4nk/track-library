@@ -5,10 +5,15 @@ import com.example.netcracker_lab_2.domain.Track;
 
 import java.util.List;
 
+/**
+ * Service with crud operations with {@link Track}
+ */
 public interface TrackService {
     List<Track> findAll();
 
-    List<Track> findByTemplate(String template);
+    List<Track> findAllByNameAlbumAuthorLikeAlternative(String template);
+
+    List<Track> findAllByNameAlbumAuthorLike(String template);
 
     Track findById(Integer id);
 
