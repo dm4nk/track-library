@@ -36,8 +36,8 @@ public class TrackController {
     }
 
     @GetMapping({"{id}/update/", "{id}/update"})
-    public String updateGenre(@PathVariable String id, Model model) {
-        model.addAttribute("track", trackService.findCommandById(Integer.parseInt(id)));
+    public String updateGenre(@PathVariable Integer id, Model model) {
+        model.addAttribute("track", trackService.findCommandById(id));
 
         model.addAttribute("genreList", genreService.findAll());
 
@@ -45,8 +45,8 @@ public class TrackController {
     }
 
     @GetMapping({"{id}/delete/", "{id}/delete"})
-    public String deleteGenre(@PathVariable String id) {
-        trackService.deleteById(Integer.parseInt(id));
+    public String deleteGenre(@PathVariable Integer id) {
+        trackService.deleteById(id);
         return "redirect:/track/";
     }
 
