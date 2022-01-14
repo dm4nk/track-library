@@ -8,11 +8,20 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 import java.util.Optional;
 
+import javax.transaction.Transactional;
+import java.util.Collection;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.dao.DataAccessException;
+
 /**
  * Repository class for {@link Genre} domain objects
  */
 @Repository
 public interface GenreRepository extends CrudRepository<Genre, Integer> {
+    @Transactional
+    @Cacheable("genres")
+    Collection<Genre> findAll() throws DataAccessException;
+
     /**
      * Retrieve {@link Genre} from data store with given name
      *
