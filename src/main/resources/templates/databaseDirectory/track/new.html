@@ -6,7 +6,7 @@
 </head>
 <body style="background-color: #423f3f">
 
-<!--/*@thymesVar id="genre" type="com.example.netcracker_lab_2.commands.TrackCommand"*/-->
+<!--/*@thymesVar id="genre" type="com.example.track_library.commands.TrackCommand"*/-->
 <form th:action="@{/track/saveOrUpdate/}" th:method="POST" th:object="${track}">
 
     <label for="name" style="color: white">Enter name: </label>
