@@ -1,10 +1,13 @@
 package com.example.track_library.controllers;
 
 import com.example.track_library.commands.GenreCommand;
+import com.example.track_library.domain.Genre;
 import com.example.track_library.service.GenreService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/genre")
@@ -15,7 +18,7 @@ public class GenreController {
         this.genreService = genreService;
     }
 
-    @GetMapping({"new/", "new"})
+    @GetMapping({"/new/", "/new"})
     public String newGenre(Model model) {
         model.addAttribute("genre", GenreCommand.builder().build());
 
@@ -29,13 +32,13 @@ public class GenreController {
         return "databaseDirectory/genre/database";
     }
 
-    @GetMapping({"{id}/update/", "{id}/update"})
+    @GetMapping({"/{id}/update/", "/{id}/update"})
     public String updateGenre(@PathVariable Integer id, Model model) {
         model.addAttribute("genre", genreService.findCommandById(id));
         return "databaseDirectory/genre/new";
     }
 
-    @GetMapping({"{id}/delete/", "{id}/delete"})
+    @GetMapping({"/{id}/delete/", "{id}/delete"})
     public String deleteGenre(@PathVariable Integer id) {
         try {
             genreService.deleteById(id);
@@ -45,7 +48,7 @@ public class GenreController {
         return "redirect:/genre/";
     }
 
-    @PostMapping({"saveOrUpdate/", "saveOrUpdate"})
+    @PostMapping({"/saveOrUpdate/", "/saveOrUpdate"})
     public String saveOrUpdateGenre(@ModelAttribute GenreCommand command) {
         try {
             GenreCommand savedCommand = genreService.saveGenreCommand(command);
@@ -53,5 +56,11 @@ public class GenreController {
             return "redirect:/error/" + "Unique name violation";
         }
         return "redirect:/genre/";
+    }
+
+    @GetMapping({"/json/", "/json"})
+    public @ResponseBody
+    List<Genre> getGenresJson(){
+        return genreService.findAll();
     }
 }

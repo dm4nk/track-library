@@ -2,11 +2,14 @@ package com.example.track_library.controllers;
 
 import com.example.track_library.commands.GenreCommand;
 import com.example.track_library.commands.TrackCommand;
+import com.example.track_library.domain.Genre;
 import com.example.track_library.service.GenreService;
 import com.example.track_library.service.TrackService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/track")
@@ -54,5 +57,11 @@ public class TrackController {
     public String saveOrUpdateTrack(@ModelAttribute TrackCommand command) {
         TrackCommand savedCommand = trackService.saveTrackCommand(command);
         return "redirect:/track/";
+    }
+
+    @GetMapping({"/json/", "/json"})
+    public @ResponseBody
+    List<Genre> getTracksJson(){
+        return genreService.findAll();
     }
 }
