@@ -20,24 +20,24 @@
 <table class="table table-hover ">
     <thead class="thead-inverse">
     <tr>
-        <th>Name</th>
-        <th>Author</th>
-        <th>Album</th>
-        <th>Duration</th>
-        <th>Genre</th>
-        <th>Update</th>
-        <th>Delete</th>
+        <th style="color: white">Name</th>
+        <th style="color: white">Author</th>
+        <th style="color: white">Album</th>
+        <th style="color: white">Duration</th>
+        <th style="color: white">Genre</th>
+        <th style="color: white">Update</th>
+        <th style="color: white">Delete</th>
     </tr>
     </thead>
     <tr style="font-size: large" th:each="track: ${tracks}">
-        <td><a style="color: green" th:text="${track.name}">Track name</a></td>
-        <td><a style="color: green" th:text="${track.author}">Track author</a></td>
-        <td><a style="color: green" th:text="${track.album}">Track album</a></td>
-        <td><a style="color: green" th:text="${track.duration}">Track duration</a></td>
-        <td><a style="color: green" th:text="${track.genre.name}">Track genre</a></td>
+        <td><a style="color: white" th:text="${track.name}">Track name</a></td>
+        <td><a style="color: white" th:text="${track.author}">Track author</a></td>
+        <td><a style="color: white" th:text="${track.album}">Track album</a></td>
+        <td><a style="color: white" th:text="${track.duration}">Track duration</a></td>
+        <td><a style="color: white" th:text="${track.genre.name}">Track genre</a></td>
 
-        <td><a style="color: green" th:href="@{/track/{id}/update/(id=${track.id})}">Update</a></td>
-        <td><a style="color: green" th:href="@{/track/{id}/delete/(id=${track.id})}">Delete</a></td>
+        <td><a style="color: white" th:href="@{/track/{id}/update/(id=${track.id})}">Update</a></td>
+        <td><a style="color: white" th:href="@{/track/{id}/delete/(id=${track.id})}">Delete</a></td>
 
     </tr>
 
