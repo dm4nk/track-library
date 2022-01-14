@@ -21,7 +21,7 @@ public class TrackCommandToTrack implements Converter<TrackCommand, Track> {
      */
     @Override
     public Track convert(TrackCommand source) {
-        return Track.builder()
+        return source == null ? null : Track.builder()
                 .id(source.getId())
                 .name(source.getName())
                 .author(source.getAuthor())

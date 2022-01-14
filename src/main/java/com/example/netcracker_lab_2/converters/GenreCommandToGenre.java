@@ -16,7 +16,7 @@ public class GenreCommandToGenre implements Converter<GenreCommand, Genre> {
      */
     @Override
     public Genre convert(GenreCommand source) {
-        return Genre.builder()
+        return source == null ? null : Genre.builder()
                 .id(source.getId())
                 .name(source.getName())
                 .build();

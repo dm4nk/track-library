@@ -39,23 +39,21 @@ class GenreControllerTest {
 
     MockMvc mockMvc;
 
+    GenreCommand genreCommand;
+
     @BeforeEach
     void setUp() {
-        //openMocks(GenreController.class);
         mockMvc = MockMvcBuilders.standaloneSetup(genreController).build();
+
+        genreCommand = GenreCommand.builder().id(1).build();
     }
 
     @Test
     void newGenre() throws Exception {
-       // when(GenreCommand.builder().build()).thenReturn(GenreCommand.builder().id(1).build());
-        GenreCommand.builder().build();
-
         mockMvc.perform(get("/genre/new/"))
                 .andExpect(status().isOk())
                 .andExpect(model().attributeExists("genre"))
                 .andExpect(view().name("databaseDirectory/genre/new"));
-
-        verify(GenreCommand.builder().build(),times(1));
     }
 
     @Test
@@ -75,32 +73,28 @@ class GenreControllerTest {
 
     @Test
     void updateGenre() throws Exception {
-        when(genreService.findCommandById(any())).thenReturn(GenreCommand.builder().id(1).build());
+        when(genreService.findCommandById(any())).thenReturn(genreCommand);
 
-        mockMvc.perform(get("/genre/update"))
+        mockMvc.perform(get("/genre/1/update/"))
                 .andExpect(status().isOk())
                 .andExpect(model().attributeExists("genre"))
                 .andExpect(view().name("databaseDirectory/genre/new"));
 
-        verify(genreService,times(1)).findCommandById(any());
+        verify(genreService, times(1)).findCommandById(any());
     }
 
     @Test
     void deleteGenre() throws Exception {
-
-        genreService.deleteById(any());
-
-
-        mockMvc.perform(get("/genre/delete/"))
+        mockMvc.perform(get("/genre/1/delete/"))
                 .andExpect(status().is3xxRedirection())
-                .andExpect(view().name("redirect:/genre/"))
-                .andExpect(view().name("redirect:/error/"));
+                .andExpect(view().name("redirect:/genre/"));
+
         verify(genreService, times(1)).deleteById(any());
     }
 
     @Test
     void saveOrUpdateGenre() throws Exception {
-        when(genreService.saveGenreCommand(any())).thenReturn(GenreCommand.builder().id(1).build());
+        when(genreService.saveGenreCommand(any())).thenReturn(genreCommand);
 
         mockMvc.perform(post("/genre/saveOrUpdate/"))
                 .andExpect(status().is3xxRedirection())

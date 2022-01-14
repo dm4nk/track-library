@@ -20,7 +20,7 @@ public class TrackController {
     }
 
     @GetMapping({"new/", "new"})
-    public String newGenre(Model model) {
+    public String newTrack(Model model) {
         model.addAttribute("track", TrackCommand.builder().genreCommand(GenreCommand.builder().build()).build());
 
         model.addAttribute("genreList", genreService.findAll());
@@ -29,14 +29,14 @@ public class TrackController {
     }
 
     @GetMapping({"", "/"})
-    public String allGenres(Model model) {
+    public String allTrack(Model model) {
         model.addAttribute("tracks", trackService.findAll());
 
         return "databaseDirectory/track/database";
     }
 
     @GetMapping({"{id}/update/", "{id}/update"})
-    public String updateGenre(@PathVariable Integer id, Model model) {
+    public String updateTrack(@PathVariable Integer id, Model model) {
         model.addAttribute("track", trackService.findCommandById(id));
 
         model.addAttribute("genreList", genreService.findAll());
@@ -45,13 +45,13 @@ public class TrackController {
     }
 
     @GetMapping({"{id}/delete/", "{id}/delete"})
-    public String deleteGenre(@PathVariable Integer id) {
+    public String deleteTrack(@PathVariable Integer id) {
         trackService.deleteById(id);
         return "redirect:/track/";
     }
 
     @PostMapping({"saveOrUpdate/", "saveOrUpdate"})
-    public String saveOrUpdateGenre(@ModelAttribute TrackCommand command) {
+    public String saveOrUpdateTrack(@ModelAttribute TrackCommand command) {
         TrackCommand savedCommand = trackService.saveTrackCommand(command);
         return "redirect:/track/";
     }
