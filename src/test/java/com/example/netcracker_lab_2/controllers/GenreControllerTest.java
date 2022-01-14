@@ -3,6 +3,7 @@ package com.example.netcracker_lab_2.controllers;
 import com.example.netcracker_lab_2.commands.GenreCommand;
 import com.example.netcracker_lab_2.domain.Genre;
 import com.example.netcracker_lab_2.service.GenreService;
+import net.bytebuddy.asm.Advice;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -45,7 +46,16 @@ class GenreControllerTest {
     }
 
     @Test
-    void newGenre() {
+    void newGenre() throws Exception {
+       // when(GenreCommand.builder().build()).thenReturn(GenreCommand.builder().id(1).build());
+        GenreCommand.builder().build();
+
+        mockMvc.perform(get("/genre/new/"))
+                .andExpect(status().isOk())
+                .andExpect(model().attributeExists("genre"))
+                .andExpect(view().name("databaseDirectory/genre/new"));
+
+        verify(GenreCommand.builder().build(),times(1));
     }
 
     @Test
@@ -64,11 +74,28 @@ class GenreControllerTest {
     }
 
     @Test
-    void updateGenre() {
+    void updateGenre() throws Exception {
+        when(genreService.findCommandById(any())).thenReturn(GenreCommand.builder().id(1).build());
+
+        mockMvc.perform(get("/genre/update"))
+                .andExpect(status().isOk())
+                .andExpect(model().attributeExists("genre"))
+                .andExpect(view().name("databaseDirectory/genre/new"));
+
+        verify(genreService,times(1)).findCommandById(any());
     }
 
     @Test
-    void deleteGenre() {
+    void deleteGenre() throws Exception {
+
+        genreService.deleteById(any());
+
+
+        mockMvc.perform(get("/genre/delete/"))
+                .andExpect(status().is3xxRedirection())
+                .andExpect(view().name("redirect:/genre/"))
+                .andExpect(view().name("redirect:/error/"));
+        verify(genreService, times(1)).deleteById(any());
     }
 
     @Test

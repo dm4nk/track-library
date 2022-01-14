@@ -4,15 +4,19 @@ import com.example.netcracker_lab_2.converters.GenreCommandToGenre;
 import com.example.netcracker_lab_2.converters.GenreToGenreCommand;
 import com.example.netcracker_lab_2.domain.Genre;
 import com.example.netcracker_lab_2.repositiry.GenreRepository;
+import org.apache.catalina.Service;
+import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 import static org.mockito.Mockito.*;
@@ -25,7 +29,6 @@ class GenreServiceImplTest {
 
     @Mock
     GenreRepository genreRepository;
-
     GenreService genreService;
 
     GenreServiceImplTest() {
@@ -56,11 +59,35 @@ class GenreServiceImplTest {
     }
 
     @Test
-    void findAllByNameLikeAlternative() {
+    void findAllByNameLikeAlternative() {//Dizzy
+        when(genreService.findAllByNameLikeAlternative(any())).thenReturn(List.of(
+                Genre.builder().id(1).build(),
+                 Genre.builder().id(2).build()
+        ));
+
+        List<Genre> genreList = genreService.findAllByNameLikeAlternative(any());
+
+        Assertions.assertEquals(1,genreList.size());
+        Assertions.assertEquals(1, genreList.get(0).getId());
+
+        verify(genreService, times(1)).findAllByNameLikeAlternative(any());
+
     }
 
     @Test
-    void findAllByNameLike() {
+    void findAllByNameLike() { //Dizzy
+        when(genreRepository.findAllByNameLike(any())).thenReturn(List.of(
+                Genre.builder().name("name").build(),
+                Genre.builder().name("other name").build()
+        ));
+
+        List<Genre> genreList = genreService.findAllByNameLike(any());
+
+        Assertions.assertEquals(2, genreList.size());
+        Assertions.assertEquals("name",genreList.get(0).getName());
+        Assertions.assertEquals("other name",genreList.get(1).getName());
+
+        verify(genreRepository, times(1)).findAllByNameLike(any());
     }
 
     @Test
@@ -82,9 +109,19 @@ class GenreServiceImplTest {
 
     @Test
     void deleteById() {
+        genreRepository.deleteById(anyInt());
+        verify(genreService,times(1)).deleteById(anyInt());
+
+       // doNothing().when(genreService).deleteById(id);
+       // doReturn(List.of(Genre.builder().id(1).build())).when(genreRepository).deleteById(1);
+
     }
 
     @Test
     void findCommandById() {
+        genreCommandToGenre.convert(any());
+
+        verify(genreService, times(1)).findCommandById(any());
+
     }
 }
