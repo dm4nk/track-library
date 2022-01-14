@@ -3,6 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <title>Track Library</title>
+
+    <link crossorigin="anonymous" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" rel="stylesheet"
+          th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script crossorigin="anonymous"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            th:src="@{/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js}"></script>
 </head>
 <body style="background-color: #423f3f">
 
@@ -72,14 +82,14 @@ text-shadow:0px -1px 0px #7a2a1d;">Genres</a>
     </tr>
     </thead>
     <tr style="font-size: large" th:each="track: ${tracks}">
-        <td><a style="color: white" th:text="${track.name}">Track name</a></td>
-        <td><a style="color: white" th:text="${track.author}">Track author</a></td>
-        <td><a style="color: white" th:text="${track.album}">Track album</a></td>
-        <td><a style="color: white" th:text="${track.duration}">Track duration</a></td>
-        <td><a style="color: white" th:text="${track.genre.name}">Track genre</a></td>
+        <td><a style="color: green" th:text="${track.name}">Track name</a></td>
+        <td><a style="color: green" th:text="${track.author}">Track author</a></td>
+        <td><a style="color: green" th:text="${track.album}">Track album</a></td>
+        <td><a style="color: green" th:text="${track.duration}">Track duration</a></td>
+        <td><a style="color: green" th:text="${track.genre.name}">Track genre</a></td>
 
-        <td><a style="color: white" th:href="@{/track/{id}/update/(id=${track.id})}">Update</a></td>
-        <td><a style="color: white" th:href="@{/track/{id}/delete/(id=${track.id})}">Delete</a></td>
+        <td><a style="color: green" th:href="@{/track/{id}/update/(id=${track.id})}">Update</a></td>
+        <td><a style="color: green" th:href="@{/track/{id}/delete/(id=${track.id})}">Delete</a></td>
 
     </tr>
 </table>
@@ -95,10 +105,10 @@ text-shadow:0px -1px 0px #7a2a1d;">Genres</a>
     </tr>
     </thead>
     <tr style="font-size: large" th:each="genre: ${genres}">
-        <td><a style="color: white" th:text="${genre.name}">Genre name</a></td>
+        <td><a style="color: green" th:text="${genre.name}">Genre name</a></td>
 
-        <td><a style="color: white" th:href="@{/genre/{id}/update/(id=${genre.id})}">Update</a></td>
-        <td><a style="color: white" th:href="@{/genre/{id}/delete/(id=${genre.id})}">Delete</a></td>
+        <td><a style="color: green" th:href="@{/genre/{id}/update/(id=${genre.id})}">Update</a></td>
+        <td><a style="color: green" th:href="@{/genre/{id}/delete/(id=${genre.id})}">Delete</a></td>
 
     </tr>
 </table>
