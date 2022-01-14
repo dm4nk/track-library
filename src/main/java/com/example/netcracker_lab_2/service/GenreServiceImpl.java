@@ -1,11 +1,9 @@
 package com.example.netcracker_lab_2.service;
 
 import com.example.netcracker_lab_2.commands.GenreCommand;
-import com.example.netcracker_lab_2.commands.TrackCommand;
 import com.example.netcracker_lab_2.converters.GenreCommandToGenre;
 import com.example.netcracker_lab_2.converters.GenreToGenreCommand;
 import com.example.netcracker_lab_2.domain.Genre;
-import com.example.netcracker_lab_2.domain.Track;
 import com.example.netcracker_lab_2.repositiry.GenreRepository;
 import org.springframework.stereotype.Service;
 

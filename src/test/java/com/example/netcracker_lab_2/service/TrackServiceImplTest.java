@@ -1,6 +1,5 @@
 package com.example.netcracker_lab_2.service;
 
-import com.example.netcracker_lab_2.commands.GenreCommand;
 import com.example.netcracker_lab_2.commands.TrackCommand;
 import com.example.netcracker_lab_2.converters.GenreCommandToGenre;
 import com.example.netcracker_lab_2.converters.GenreToGenreCommand;
@@ -14,7 +13,6 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
@@ -25,7 +23,6 @@ import java.util.Optional;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.*;
-import static org.mockito.Mockito.times;
 
 @ExtendWith(MockitoExtension.class)
 class TrackServiceImplTest {
@@ -87,7 +84,6 @@ class TrackServiceImplTest {
                 .build();
 
 
-
         trackCommand = TrackCommand.builder().name("name").build();
     }
 
@@ -127,8 +123,8 @@ class TrackServiceImplTest {
         List<Track> genreList = trackService.findAllByNameAlbumAuthorLike(any());
 
         Assertions.assertEquals(2, genreList.size());
-        Assertions.assertEquals("name",genreList.get(0).getName());
-        Assertions.assertEquals("other name",genreList.get(1).getName());
+        Assertions.assertEquals("name", genreList.get(0).getName());
+        Assertions.assertEquals("other name", genreList.get(1).getName());
 
         verify(trackRepository, times(1)).findAllByNameAlbumAuthorLike(any());
     }
@@ -161,7 +157,7 @@ class TrackServiceImplTest {
     void deleteById() {
         trackService.deleteById(anyInt());
 
-        verify(trackRepository,times(1)).deleteById(anyInt());
+        verify(trackRepository, times(1)).deleteById(anyInt());
     }
 
     @Test

@@ -16,7 +16,7 @@
 </head>
 <body style="background-color: #423f3f">
 
-<a th:href="@{/track/}" style="box-shadow:inset 0px 34px 0px -15px #1c1c1c;
+<a style="box-shadow:inset 0px 34px 0px -15px #1c1c1c;
 background:linear-gradient(to bottom, #423f3f 5%, #080100 100%);
 background-color:#423f3f;
 border:1px solid #241d13;
@@ -28,12 +28,12 @@ font-size:15px;
 font-weight:bold;
 padding:9px 23px;
 text-decoration:none;
-text-shadow:0px -1px 0px #7a2a1d;">Tracks</a>
+text-shadow:0px -1px 0px #7a2a1d;" th:href="@{/track/}">Tracks</a>
 
 <br/>
 <hr/>
 
-<a th:href="@{/genre/}" style="box-shadow:inset 0px 34px 0px -15px #1c1c1c;
+<a style="box-shadow:inset 0px 34px 0px -15px #1c1c1c;
 background:linear-gradient(to bottom, #423f3f 5%, #080100 100%);
 background-color:#423f3f;
 border:1px solid #241d13;
@@ -45,14 +45,14 @@ font-size:15px;
 font-weight:bold;
 padding:9px 23px;
 text-decoration:none;
-text-shadow:0px -1px 0px #7a2a1d;">Genres</a>
+text-shadow:0px -1px 0px #7a2a1d;" th:href="@{/genre/}">Genres</a>
 
 <br/>
 <hr/>
 
 <form th:action="@{/find/}">
     <label for="template" style="color: white">Find by template: </label>
-    <input type="text" id="template" name="template" value="" style="border-radius: 9px;"/>
+    <input id="template" name="template" style="border-radius: 9px;" type="text" value=""/>
     <input style="box-shadow:inset 0px 34px 0px -15px #1c1c1c;
 	background:linear-gradient(to bottom, #423f3f 5%, #080100 100%);
 	background-color:#423f3f;

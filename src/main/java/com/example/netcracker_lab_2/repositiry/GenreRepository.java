@@ -15,6 +15,7 @@ import java.util.Optional;
 public interface GenreRepository extends CrudRepository<Genre, Integer> {
     /**
      * Retrieve {@link Genre} from data store with given name
+     *
      * @param name Value to search for
      * @return Single optional of genre with matching name (as name is unique column in {@link Genre})
      */

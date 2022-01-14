@@ -6,8 +6,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.sql.SQLException;
-
 @Controller
 @RequestMapping("/genre")
 public class GenreController {
@@ -17,7 +15,7 @@ public class GenreController {
         this.genreService = genreService;
     }
 
-    @GetMapping({"new/", "new" })
+    @GetMapping({"new/", "new"})
     public String newGenre(Model model) {
         model.addAttribute("genre", GenreCommand.builder().build());
 
@@ -41,8 +39,7 @@ public class GenreController {
     public String deleteGenre(@PathVariable Integer id) {
         try {
             genreService.deleteById(id);
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             return "redirect:/error/" + "Genre contains Tracks";
         }
         return "redirect:/genre/";
@@ -52,8 +49,7 @@ public class GenreController {
     public String saveOrUpdateGenre(@ModelAttribute GenreCommand command) {
         try {
             GenreCommand savedCommand = genreService.saveGenreCommand(command);
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             return "redirect:/error/" + "Unique name violation";
         }
         return "redirect:/genre/";
