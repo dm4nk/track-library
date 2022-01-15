@@ -11,6 +11,10 @@ for rendering the UI.
 
 It was built for educational purpose helping with understanding basic principles and syntax of Spring, JPA, MVC pattern, Tests, HTML and CSS
 
+Provides basic CRUD operations with 
+[Tracks](https://github.com/dm4nk/track_library/blob/master/src/main/java/com/example/track_library/domain/Track.java) and 
+[Genres](https://github.com/dm4nk/track_library/blob/master/src/main/java/com/example/track_library/domain/Genre.java)
+
 ### Index with search bar
 
 ![Index with search bar](https://user-images.githubusercontent.com/80630476/149616838-cfda1562-125b-4359-90bb-93a8d7214209.png)
