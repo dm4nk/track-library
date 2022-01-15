@@ -7,8 +7,10 @@ import com.example.track_library.service.GenreService;
 import com.example.track_library.service.TrackService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -54,14 +56,22 @@ public class TrackController {
     }
 
     @PostMapping({"saveOrUpdate/", "saveOrUpdate"})
-    public String saveOrUpdateTrack(@ModelAttribute TrackCommand command) {
+    public String saveOrUpdateTrack(@ModelAttribute @Valid TrackCommand command, BindingResult bindingResult, Model model) {
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("track", command);
+
+            model.addAttribute("genreList", genreService.findAll());
+
+            return "databaseDirectory/track/new";
+        }
+
         TrackCommand savedCommand = trackService.saveTrackCommand(command);
         return "redirect:/track/";
     }
 
     @GetMapping({"/json/", "/json"})
     public @ResponseBody
-    List<Genre> getTracksJson(){
+    List<Genre> getTracksJson() {
         return genreService.findAll();
     }
 }

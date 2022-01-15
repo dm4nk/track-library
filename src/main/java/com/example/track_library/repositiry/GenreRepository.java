@@ -1,17 +1,16 @@
 package com.example.track_library.repositiry;
 
 import com.example.track_library.domain.Genre;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.dao.DataAccessException;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
-import java.util.Optional;
-
 import javax.transaction.Transactional;
 import java.util.Collection;
-import org.springframework.cache.annotation.Cacheable;
-import org.springframework.dao.DataAccessException;
+import java.util.List;
+import java.util.Optional;
 
 /**
  * Repository class for {@link Genre} domain objects
@@ -19,7 +18,7 @@ import org.springframework.dao.DataAccessException;
 @Repository
 public interface GenreRepository extends CrudRepository<Genre, Integer> {
     @Transactional
-    @Cacheable("genres")
+    @CacheEvict(value = "genres", allEntries = true)
     Collection<Genre> findAll() throws DataAccessException;
 
     /**

@@ -3,6 +3,8 @@ package com.example.track_library.commands;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
+import javax.validation.constraints.NotEmpty;
+
 /**
  * Transfers data between view and model
  */
@@ -14,5 +16,6 @@ import lombok.experimental.FieldDefaults;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class GenreCommand {
     Integer id;
+    @NotEmpty
     String name;
 }

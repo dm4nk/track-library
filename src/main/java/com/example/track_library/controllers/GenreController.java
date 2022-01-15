@@ -5,8 +5,10 @@ import com.example.track_library.domain.Genre;
 import com.example.track_library.service.GenreService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -49,7 +51,11 @@ public class GenreController {
     }
 
     @PostMapping({"/saveOrUpdate/", "/saveOrUpdate"})
-    public String saveOrUpdateGenre(@ModelAttribute GenreCommand command) {
+    public String saveOrUpdateGenre(@ModelAttribute @Valid GenreCommand command, BindingResult bindingResult, Model model) {
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("genre", command);
+            return "databaseDirectory/genre/new";
+        }
         try {
             GenreCommand savedCommand = genreService.saveGenreCommand(command);
         } catch (Exception e) {
@@ -60,7 +66,7 @@ public class GenreController {
 
     @GetMapping({"/json/", "/json"})
     public @ResponseBody
-    List<Genre> getGenresJson(){
+    List<Genre> getGenresJson() {
         return genreService.findAll();
     }
 }
