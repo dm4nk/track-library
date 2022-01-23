@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.example</groupId>
-    <artifactId>track_library</artifactId>
+    <artifactId>track-library</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>track_library</name>
-    <description>track_library</description>
+    <name>track-library</name>
+    <description>track-library</description>
     <properties>
         <java.version>17</java.version>
         <hibernate.validator.version>6.1.5.Final</hibernate.validator.version>
